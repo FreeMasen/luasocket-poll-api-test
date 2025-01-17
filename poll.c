@@ -2,9 +2,6 @@
 #include <errno.h>
 #include <stdio.h>
 
-/* socket function */
-#include <sys/socket.h>
-
 #include "lua.h"
 #include "lauxlib.h"
 
