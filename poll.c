@@ -2,9 +2,6 @@
 #include <errno.h>
 #include <stdio.h>
 
-/* socket function */
-#include <sys/socket.h>
-
 #include "lua.h"
 #include "lauxlib.h"
 
@@ -58,8 +55,8 @@ static int actual_poll(lua_State *L, struct pollfd *fds, nfds_t nfds, int timeou
         default:
             error_msg = "Unknown Error";
             break;
-            lua_pushstring(L, error_msg);
         }
+        lua_pushstring(L, error_msg);
         return -1;
     }
     return 1;
@@ -125,7 +122,7 @@ static int collect_poll_args(lua_State *L, int tab, int rtab, struct pollfd dest
         // printf("(%i) after lua_pushnumber %i\n", lua_gettop(L), i);
         // swap fd and sock
         lua_rotate(L, -2, 1);
-        dump_stack(L);
+        // dump_stack(L);
         lua_settable(L, rtab);
         // printf("(%i) after lua_settable %i\n", lua_gettop(L), i);
         // dump_stack(L);
